@@ -122,9 +122,12 @@ class Building{
  
                 break;          
             case 'casino':
-                fill(0,100,0);
+                fill(240,180,0);
                 stroke(0);
                 rect(this.x,this.y-50,this.u,150);   
+                noStroke();
+                fill(255,0,0);
+                rect(this.x+10,this.y-40,this.u-20,150-20);   
                 fill("#ffd700")
                 textSize(this.u/6);
                 if (this.framecount % 5 ==0 || this.framecount % 3 ==0)
@@ -138,7 +141,7 @@ class Building{
                     fill(255);
 
                 }
-                text(mytxt,this.x+10,this.y+25); 
+                text(mytxt,this.x+13,this.y+25); 
 
                 break;  
             

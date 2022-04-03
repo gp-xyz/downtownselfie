@@ -1,6 +1,6 @@
 class Street{
    
-constructor(daymode,airplanecount,buildingcount,unit){
+constructor(daymode,airplanecount,buildingcount,birdcount,unit){
         this.unit = unit;
         if (daymode == 'night'){
             this.skycolors = ["#9078aa","#202870"];
@@ -13,10 +13,13 @@ constructor(daymode,airplanecount,buildingcount,unit){
         
         print('haasldkfjsdlfkjds');
         
+        this.birds = [];
+        this.birdcount = birdcount;
+        this.createbirds();
+     
         this.airplanes = [];
         this.airplanecount = airplanecount;
         this.createplanes();
-        print('haasldkfjsdlfkjds');
 
         this.buidlings = [];
         this.createbuildings(buildingcount);
@@ -26,10 +29,15 @@ constructor(daymode,airplanecount,buildingcount,unit){
         this.car = new Car();
 
         this.kpos = random(20,width-20);
-        this.kypos = random(320,420);
+        this.kypos = random(320,390);
 
         this.cpos = random(20,width-20);
-        this.cypos = random(320,420);
+        this.cypos = random(320,390);
+        this.kaimg = loadImage('kai.png');
+     
+
+        
+        this.cimg = loadImage('carlyse.png');
         
 
         
@@ -40,8 +48,12 @@ constructor(daymode,airplanecount,buildingcount,unit){
         this.showbuildings();
         this.showcar();
         // textSize(25);
-        // text("🧶",this.kpos,this.kypos);
-        // text("💍",this.cpos,this.cypos);
+        this.kaimg.resize(30,0);
+        image(this.kaimg,this.kpos,this.kypos);
+        this.cimg.resize(30,0);
+        image(this.cimg,this.cpos,this.cypos);
+
+        this.showbirds();
         
 
     }
@@ -105,6 +117,16 @@ constructor(daymode,airplanecount,buildingcount,unit){
             
         }
     }
+    createbirds(){
+        for (let i=0;i<this.birdcount;i++){
+            var ax = random(0,width);
+            var ay = random(0,height/2);
+            var aspd = random(6,9);
+            var aw = 50;
+            this.birds.push(new Bird(ax,ay,aw,aspd));
+            
+        }
+    }
     showsky(){
         // print(this.skycolors[0]);
         var c1 = color(this.skycolors[0]);
@@ -127,11 +149,18 @@ constructor(daymode,airplanecount,buildingcount,unit){
             this.airplanes[i].show();
             this.airplanes[i].move();
         }
+
     }
     createbuilings(){
 
     }
-    
+    showbirds(){
+        for (let i=0;i<this.birds.length;i++){
+       
+            this.birds[i].show();
+            this.birds[i].move();
+        }
+    }
 
 drawSun() {
 
